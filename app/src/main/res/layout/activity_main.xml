@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:id="@+id/fragment_container">
+    android:orientation="vertical">
 
-</FrameLayout>
+    <fragment
+        android:id="@+id/fragment_top"
+        android:name="advance.iak.advance3.OneFragment"
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <fragment
+        android:id="@+id/fragment_bot"
+        android:name="advance.iak.advance3.TwoFragment"
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+</LinearLayout>

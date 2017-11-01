@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:background="@color/colorPrimaryDark"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:textColor="#fff"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,11 +16,10 @@
         android:id="@+id/text" />
 
     <Button
-        android:id="@+id/btn_goto_next_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text"
+        android:id="@+id/btn_plus"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:text="fragment two" />
+        android:layout_below="@id/text"
+        android:text="+1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
