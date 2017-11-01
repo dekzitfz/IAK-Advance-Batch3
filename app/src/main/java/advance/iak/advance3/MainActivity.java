@@ -15,4 +15,13 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.fragment_container, new OneFragment(), null)
                 .commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() > 0){
+            getSupportFragmentManager().popBackStack();
+        }else{
+            super.onBackPressed();
+        }
+    }
 }

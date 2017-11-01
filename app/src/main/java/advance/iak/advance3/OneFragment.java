@@ -27,6 +27,7 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_goto_fragment_two:
                 getFragmentManager()
                         .beginTransaction()
+                        .addToBackStack(TwoFragment.class.getSimpleName())
                         .replace(R.id.fragment_container, new TwoFragment(), null)
                         .commit();
                 break;
