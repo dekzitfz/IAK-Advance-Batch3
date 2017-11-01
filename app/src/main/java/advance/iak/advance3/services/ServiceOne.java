@@ -13,6 +13,12 @@ public class ServiceOne extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand called");
+        try {
+            Thread.sleep(10000);
+            Log.i(TAG, "10 sec has passed!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
