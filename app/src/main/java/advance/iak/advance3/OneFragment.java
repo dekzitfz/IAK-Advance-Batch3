@@ -6,10 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class OneFragment extends Fragment implements View.OnClickListener {
 
+    private static final String KEY_DATA = "key_data";
+
     public OneFragment() {}
+
+    public static OneFragment newInstance(String data){
+        OneFragment fragment = new OneFragment();
+        Bundle b = new Bundle();
+        b.putString(KEY_DATA, data);
+        fragment.setArguments(b);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -17,6 +28,10 @@ public class OneFragment extends Fragment implements View.OnClickListener {
 
         Button btn = view.findViewById(R.id.btn_goto_fragment_two);
         btn.setOnClickListener(this);
+
+        TextView text = view.findViewById(R.id.text);
+        String data = getArguments().getString(KEY_DATA);
+        text.setText(data);
 
         return view;
     }
