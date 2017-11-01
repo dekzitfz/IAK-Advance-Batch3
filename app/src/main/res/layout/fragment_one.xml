@@ -10,5 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="FRAGMENT ONE" />
+        android:text="FRAGMENT ONE"
+        android:id="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_goto_fragment_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="fragment two" />
 </RelativeLayout>
