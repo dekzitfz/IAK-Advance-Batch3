@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OneFragment oneFragment = OneFragment.newInstance("data gua");
+        OneFragment oneFragment = OneFragment.newInstance(0);
 
         getSupportFragmentManager()
                 .beginTransaction()

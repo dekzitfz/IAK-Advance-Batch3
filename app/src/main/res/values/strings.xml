@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IAK-Advance3</string>
+    <string name="goto_fragment">GOTO FRAGMENT %d</string>
 </resources>

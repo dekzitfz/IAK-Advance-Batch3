@@ -10,14 +10,16 @@ import android.widget.TextView;
 
 public class OneFragment extends Fragment implements View.OnClickListener {
 
-    private static final String KEY_DATA = "key_data";
+    private static final String KEY_POSITION = "key_position";
+
+    private int number;
 
     public OneFragment() {}
 
-    public static OneFragment newInstance(String data){
+    public static OneFragment newInstance(int position){
         OneFragment fragment = new OneFragment();
         Bundle b = new Bundle();
-        b.putString(KEY_DATA, data);
+        b.putInt(KEY_POSITION, position);
         fragment.setArguments(b);
         return fragment;
     }
@@ -26,12 +28,14 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_one, container, false);
 
-        Button btn = view.findViewById(R.id.btn_goto_fragment_two);
+        number = getArguments().getInt(KEY_POSITION);
+
+        Button btn = view.findViewById(R.id.btn_goto_next_fragment);
+        btn.setText(getString(R.string.goto_fragment, number+1));
         btn.setOnClickListener(this);
 
         TextView text = view.findViewById(R.id.text);
-        String data = getArguments().getString(KEY_DATA);
-        text.setText(data);
+        text.setText(String.valueOf(number));
 
         return view;
     }
@@ -39,11 +43,12 @@ public class OneFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_goto_fragment_two:
+            case R.id.btn_goto_next_fragment:
+                number++;
                 getFragmentManager()
                         .beginTransaction()
-                        .addToBackStack(TwoFragment.class.getSimpleName())
-                        .replace(R.id.fragment_container, new TwoFragment(), null)
+                        .addToBackStack(String.valueOf(number))
+                        .replace(R.id.fragment_container, OneFragment.newInstance(number), null)
                         .commit();
                 break;
             default:
