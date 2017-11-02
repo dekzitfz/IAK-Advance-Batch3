@@ -19,42 +19,16 @@ public class ServiceSampleActivity extends AppCompatActivity {
 
     private static final String TAG  = ServiceSampleActivity.class.getSimpleName();
 
-    private ServiceConnection serviceConnection;
-    private boolean serviceBounded = false;
-    ServiceOne serviceOne;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_sample);
 
-        serviceConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                Log.i(TAG, "onServiceConnected");
-                // bounded to ServiceOne, cast the IBinder and get ServiceOne instance
-                ServiceOne.ServiceOneBinder binder = (ServiceOne.ServiceOneBinder) iBinder;
-                serviceOne = binder.getService();
-                serviceBounded = true;
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName componentName) {
-                Log.i(TAG, "onServiceDisconnected");
-                serviceBounded = false;
-            }
-        };
-
         Button btnStartService = findViewById(R.id.btn_start_service);
         btnStartService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(serviceBounded){
-                    serviceOne.startSomething();
-                }else{
-                    Toast.makeText(ServiceSampleActivity.this, "not bounded", Toast.LENGTH_SHORT).show();
-                }
-
+                startService(new Intent(ServiceSampleActivity.this, ServiceTwo.class));
             }
         });
     }
@@ -62,18 +36,12 @@ public class ServiceSampleActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        bindService(
-                new Intent(ServiceSampleActivity.this, ServiceOne.class),
-                serviceConnection,
-                Context.BIND_AUTO_CREATE
-        );
+
     }
 
     @Override
     protected void onStop() {
         Log.i(TAG, "onStop");
         super.onStop();
-        unbindService(serviceConnection);
-        serviceBounded = false;
     }
 }

@@ -21,6 +21,7 @@
         </activity>
 
         <service android:name=".services.ServiceOne" />
+        <service android:name=".services.ServiceTwo" />
     </application>
 
 </manifest>
