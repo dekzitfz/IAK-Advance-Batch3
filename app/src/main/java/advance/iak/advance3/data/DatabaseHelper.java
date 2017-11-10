@@ -9,6 +9,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mydata";
     private static final int DATABASE_VERSION = 1;
 
+    private static final String CREATE_TABLE_PEOPLE =
+            "CREATE TABLE " + PeopleContract.PeopleEntry.TABLE_NAME + " (" +
+                    PeopleContract.PeopleEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    PeopleContract.PeopleEntry.PEOPLE_NAME + " TEXT, " +
+                    PeopleContract.PeopleEntry.PEOPLE_ADDRESS + " TEXT " +
+                    ");";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
