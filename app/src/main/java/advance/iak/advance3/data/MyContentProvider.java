@@ -22,9 +22,12 @@ public class MyContentProvider extends ContentProvider {
         return matcher;
     }
 
+    private DatabaseHelper databaseHelper;
+
     @Override
     public boolean onCreate() {
-        return false;
+        databaseHelper = new DatabaseHelper(getContext());
+        return true;
     }
 
     @Nullable
