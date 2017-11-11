@@ -2,12 +2,26 @@ package advance.iak.advance3.data;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import static advance.iak.advance3.data.PeopleContract.AUTHORITY;
+import static advance.iak.advance3.data.PeopleContract.PATH_PEOPLE;
+
 public class MyContentProvider extends ContentProvider {
+
+    private static final int PEOPLES = 123;
+
+    public static UriMatcher buildUriMatcher() {
+        UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+        matcher.addURI(AUTHORITY, PATH_PEOPLE, PEOPLES);
+
+        return matcher;
+    }
+
     @Override
     public boolean onCreate() {
         return false;
