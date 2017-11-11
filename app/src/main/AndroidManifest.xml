@@ -13,6 +13,10 @@
 
         </activity>
         <activity android:name=".services.ServiceSampleActivity">
+
+        </activity>
+
+        <activity android:name=".PeopleInputActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -14,7 +14,7 @@ public class PeopleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_PEOPLE).build();
 
         public static final String TABLE_NAME = "people";
-        public static final String PEOPLE_NAME = "recipe_name";
-        public static final String PEOPLE_ADDRESS = "recipe_id";
+        public static final String PEOPLE_NAME = "name";
+        public static final String PEOPLE_ADDRESS = "address";
     }
 }
