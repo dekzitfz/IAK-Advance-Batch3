@@ -36,8 +36,29 @@ public class MyContentProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
-        return null;
+    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+        Cursor result;
+        final SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        int match = uriMatcher.match(uri);
+        switch (match){
+            case PEOPLES:
+                result = db.query(
+                        PeopleContract.PeopleEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                result.setNotificationUri(getContext().getContentResolver(), uri);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown or Invalid URI " + uri);
+        }
+
+        return result;
     }
 
     @Nullable
