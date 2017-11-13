@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="advance.iak.advance3">
 
+    <permission
+        android:name="advance.iak.advance3.permRead"
+        android:protectionLevel="signature" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,9 +32,12 @@
         <service android:name=".services.ServiceTwo" />
 
         <provider
+            android:readPermission="advance.iak.advance3.permRead"
             android:exported="true"
             android:authorities="advance.iak.advance3"
             android:name=".data.MyContentProvider"/>
+
+
     </application>
 
 </manifest>
