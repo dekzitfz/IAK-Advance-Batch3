@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import advance.iak.advance3.model.User;
 import advance.iak.advance3.rest.GithubAPI;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,18 +31,20 @@ public class RetrofitActivity extends AppCompatActivity {
         btnRetrofit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                service.getUser("dekzitfz").enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        User anu = response.body();
-                        Toast.makeText(RetrofitActivity.this, anu.getName(), Toast.LENGTH_SHORT).show();
-                    }
+                service.getUser("dekzitfz")
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new DisposableSingleObserver<User>() {
+                            @Override
+                            public void onSuccess(User user) {
+                                Toast.makeText(RetrofitActivity.this, user.getName(), Toast.LENGTH_SHORT).show();
+                            }
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Toast.makeText(RetrofitActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            @Override
+                            public void onError(Throwable e) {
+                                Toast.makeText(RetrofitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }
