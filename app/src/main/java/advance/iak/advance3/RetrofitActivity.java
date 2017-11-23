@@ -28,24 +28,12 @@ public class RetrofitActivity extends AppCompatActivity {
         service = MyApp.getREST().getService();
 
         Button btnRetrofit = findViewById(R.id.btn_retrofit);
-        btnRetrofit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                service.getUser("dekzitfz")
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new DisposableSingleObserver<User>() {
-                            @Override
-                            public void onSuccess(User user) {
-                                Toast.makeText(RetrofitActivity.this, user.getName(), Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Toast.makeText(RetrofitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
-        });
+        btnRetrofit.setOnClickListener(v -> service.getUser("dekzitfz")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        user -> Toast.makeText(RetrofitActivity.this, user.getName(), Toast.LENGTH_SHORT).show(),
+                        error -> Toast.makeText(RetrofitActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show()
+                ));
     }
 }
