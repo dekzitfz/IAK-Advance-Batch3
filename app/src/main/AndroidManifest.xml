@@ -6,7 +6,10 @@
         android:name="advance.iak.advance3.permRead"
         android:protectionLevel="signature" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +24,9 @@
         </activity>
 
         <activity android:name=".PeopleInputActivity">
+
+        </activity>
+        <activity android:name=".RetrofitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
