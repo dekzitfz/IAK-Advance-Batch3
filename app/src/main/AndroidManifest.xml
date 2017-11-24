@@ -27,6 +27,10 @@
 
         </activity>
         <activity android:name=".RetrofitActivity">
+
+        </activity>
+
+        <activity android:name=".OrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
