@@ -1,11 +1,14 @@
 package advance.iak.advance3.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import advance.iak.advance3.OrientationActivity;
 import advance.iak.advance3.R;
 
 /**
@@ -18,10 +21,14 @@ public class MyWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        CharSequence widgetText = "Android Kejar";
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        Intent main = new Intent(context, OrientationActivity.class);
+        PendingIntent pendingMain = PendingIntent.getActivity(context,0, main,PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.appwidget_text, pendingMain);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
