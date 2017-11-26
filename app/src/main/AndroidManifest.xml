@@ -6,7 +6,7 @@
         android:name="advance.iak.advance3.permRead"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MyApp"
@@ -16,20 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".services.ServiceSampleActivity">
-
-        </activity>
-
-        <activity android:name=".PeopleInputActivity">
-
-        </activity>
-        <activity android:name=".RetrofitActivity">
-
-        </activity>
-
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".services.ServiceSampleActivity"></activity>
+        <activity android:name=".PeopleInputActivity"></activity>
+        <activity android:name=".RetrofitActivity"></activity>
         <activity android:name=".OrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,12 +32,20 @@
         <service android:name=".services.ServiceTwo" />
 
         <provider
-            android:readPermission="advance.iak.advance3.permRead"
-            android:exported="true"
+            android:name=".data.MyContentProvider"
             android:authorities="advance.iak.advance3"
-            android:name=".data.MyContentProvider"/>
+            android:exported="true"
+            android:readPermission="advance.iak.advance3.permRead" />
 
+        <receiver android:name=".widget.MyWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
