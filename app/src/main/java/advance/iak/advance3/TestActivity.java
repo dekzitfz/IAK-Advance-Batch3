@@ -1,5 +1,6 @@
 package advance.iak.advance3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,11 @@ public class TestActivity extends AppCompatActivity {
         EditText etAngka2 = findViewById(R.id.angka2);
         TextView tvResult = findViewById(R.id.tv_result);
         Button btnSum = findViewById(R.id.btn_sum);
+        Button btnNavigateAway = findViewById(R.id.btn_navigate);
+
+        btnNavigateAway.setOnClickListener(view -> {
+            startActivity(new Intent(TestActivity.this, OrientationActivity.class));
+        });
 
         btnSum.setOnClickListener(v -> {
             int angka1 = Integer.parseInt(etAngka1.getText().toString());

@@ -23,18 +23,12 @@ public class MyFirstTest {
 
     @Test
     public void testSum(){
-        onView(withId(R.id.angka1))
-                .perform(replaceText("2"));
 
-
-        onView(withId(R.id.angka2))
-                .perform(replaceText("3"));
-
-        onView(withId(R.id.btn_sum))
+        onView(withId(R.id.btn_navigate))
                 .perform(click());
 
-        onView(withId(R.id.tv_result))
-                .check(matches(withText("5")));
+        onView(withId(R.id.name))
+                .check(matches(withText("Jake Wharton")));
     }
 
 }
